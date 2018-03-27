@@ -20,6 +20,21 @@ ActiveRecord::Schema.define do
   end
 end
 
+
+ActiveRecord::Schema.define do
+  create_table :courts, force: true do |table|
+    table.column :court_id, :integer
+    table.column :name, :string
+    table.column :address, :string
+    table.column :court_number, :string
+    table.column :latitude, :decimal, { precision: 10, scale: 6 }
+    table.column :longitude, :decimal, { precision: 10, scale: 6 }
+  end
+end
+
+
+
+
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class= true
 end
@@ -34,5 +49,8 @@ end
 
 torneo= Tournament.create(:name => 'Olimpiadas Universitarias')
 equipo= torneo.teams.create(:name => 'BUAP')
+equipo= torneo.teams.create(:name => 'UDLAP')
+equipo= torneo.teams.create(:name => 'UNAM')
+equipo= torneo.teams.create(:name => 'IPN')
 
 p Tournament.first.teams
